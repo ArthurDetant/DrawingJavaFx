@@ -6,6 +6,8 @@ import drawing.handlers.*;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class ToolBar extends HBox implements Observer {
@@ -37,17 +39,23 @@ public class ToolBar extends HBox implements Observer {
         ArcCommand arc = new ArcCommand(drawingPane);
         QuadCommand quad = new QuadCommand(drawingPane);
 
-        clearButton = new Button("Clear");
-        // clearButton.setOnAction(event -> drawingPane.clear());
+        Image clearimage = new Image(getClass().getResourceAsStream("image/clear.png"));
+        clearButton = new Button("Clear", new ImageView(clearimage));
         clearButton.addEventFilter(ActionEvent.ACTION, new ClearButtonHandler(clear, drawingPane));
-        rectangleButton = new Button("Rectangle");
+        Image carre = new Image(getClass().getResourceAsStream("image/carre.png"));
+        rectangleButton = new Button("Rectangle", new ImageView(carre));
         rectangleButton.addEventFilter(ActionEvent.ACTION, new RectangleButtonHandler(drawingPane));
-        circleButton = new Button("Circle");
+        Image cercle = new Image(getClass().getResourceAsStream("image/cercle.png"));
+        circleButton = new Button("Circle", new ImageView(cercle));
         circleButton.addEventFilter(ActionEvent.ACTION, new EllipseButtonHandler(drawingPane));
-        triangleButton = new Button("Triangle");
+        Image imagetriangle = new Image(getClass().getResourceAsStream("image/triangle.png"));
+        triangleButton = new Button("Triangle", new ImageView(imagetriangle));
         triangleButton.addEventFilter(ActionEvent.ACTION, new TriangleButtonHandler(drawingPane));
-        removeButton = new Button("Suppr.");
+
+        Image removeImage = new Image(getClass().getResourceAsStream("image/delete.png"));
+        removeButton = new Button("Suppr.", new ImageView(removeImage));
         removeButton.addEventFilter(ActionEvent.ACTION, new RemoveShapesHandler(remove, drawingPane));
+
         groupButton = new Button("Group");
         groupButton.addEventFilter(ActionEvent.ACTION, new GroupButtonHandler(group, drawingPane));
         degroupButton = new Button("Degroup");

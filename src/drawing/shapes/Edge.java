@@ -23,6 +23,10 @@ public class Edge implements IShape  {
        ies.buildPath(f,t,shape);
 
     }
+    public void setEdgeStrategy(IEdgeStrategy strategy){ // pas bien et pas fini
+        iEdgeStrategy = strategy;
+        iEdgeStrategy.buildPath(this.from,this.to,this.shape);
+    }
 
     @Override
     public boolean isSelected() {

@@ -1,6 +1,7 @@
 package drawing.commands;
 
 import drawing.Errors;
+import drawing.IEdgeStrategy;
 import drawing.shapes.Courbes;
 import drawing.shapes.Droit;
 import drawing.shapes.Edge;
@@ -15,6 +16,7 @@ public class ArcCommand implements ICommand {
     }
     @Override
     public void execute() throws Errors {
+
         if(drawingPane.getSelection().size() !=2){
             drawingPane.giveError("Need 2 forms!");
             throw new Errors("Need 2 forms!");
