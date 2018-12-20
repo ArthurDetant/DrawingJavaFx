@@ -10,10 +10,15 @@ public class ShapeAdapter implements IShape {
     private Shape shape;
     private boolean isSelected;
 
+    public double firstX;
+    public double firstY;
+
     public ShapeAdapter (Shape shape) {
 
         this.shape = shape;
         this.isSelected = false;
+         firstX = this.shape.getBoundsInParent().getMinX();
+         firstY = this.shape.getBoundsInParent().getMinY();
     }
 
     @Override
@@ -68,12 +73,12 @@ public class ShapeAdapter implements IShape {
 
     @Override
     public ObservableValue translateXPorperty() {
-        return shape.translateXProperty().add(this.shape.getBoundsInParent().getMinX()+this.getBoundsInParent().getWidth()/2);
+        return shape.translateXProperty().add(this.firstX+this.getBoundsInParent().getWidth()/2);
     }
 
     @Override
     public ObservableValue translateYPorperty() {
 
-        return shape.translateYProperty().add(this.shape.getBoundsInParent().getMinY()+this.getBoundsInParent().getHeight()/2);
+        return shape.translateYProperty().add(this.firstY+this.getBoundsInParent().getHeight()/2);
     }
 }

@@ -1,15 +1,17 @@
 package drawing.commands;
 
+
 import drawing.Errors;
-import drawing.shapes.Droit;
+import drawing.shapes.Courbes;
 import drawing.shapes.Edge;
 import drawing.shapes.IShape;
+import drawing.shapes.QuadCurve;
 import drawing.ui.DrawingPane;
 
-public class BindCommand implements ICommand {
+public class QuadCommand  implements ICommand {
     private DrawingPane drawingPane;
 
-    public BindCommand(DrawingPane dpane){
+    public QuadCommand(DrawingPane dpane){
         this.drawingPane = dpane;
     }
     @Override
@@ -18,8 +20,8 @@ public class BindCommand implements ICommand {
             drawingPane.giveError("Need 2 forms!");
             throw new Errors("Need 2 forms!");
         }
-        Droit d= new Droit();
-        IShape line = new Edge(drawingPane.getSelection().get(0), drawingPane.getSelection().get(1), d);
+        QuadCurve q= new QuadCurve();
+        IShape line = new Edge(drawingPane.getSelection().get(0), drawingPane.getSelection().get(1), q);
         drawingPane.addShape(line);
     }
 

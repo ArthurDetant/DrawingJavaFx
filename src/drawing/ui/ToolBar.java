@@ -21,6 +21,8 @@ public class ToolBar extends HBox implements Observer {
     private Button cloneButton;
     private Button TextButton;
     private Button bindButton;
+    private Button ArcButton;
+    private Button QuadButton;
 
 
     public ToolBar(DrawingPane drawingPane) {
@@ -32,6 +34,9 @@ public class ToolBar extends HBox implements Observer {
         CloneCommand clone = new CloneCommand(drawingPane);
         TextCommand text = new TextCommand(drawingPane);
         BindCommand bind = new BindCommand(drawingPane);
+        ArcCommand arc = new ArcCommand(drawingPane);
+        QuadCommand quad = new QuadCommand(drawingPane);
+
         clearButton = new Button("Clear");
         // clearButton.setOnAction(event -> drawingPane.clear());
         clearButton.addEventFilter(ActionEvent.ACTION, new ClearButtonHandler(clear, drawingPane));
@@ -55,9 +60,14 @@ public class ToolBar extends HBox implements Observer {
         TextButton.addEventFilter(ActionEvent.ACTION, new TextButtonHandler(text,drawingPane));
         bindButton = new Button("Bind");
         bindButton.addEventFilter(ActionEvent.ACTION, new BindButtonHandler(bind ,drawingPane));
+        ArcButton = new Button("Courbe");
+        ArcButton.addEventFilter(ActionEvent.ACTION, new BindButtonHandler(arc ,drawingPane));
+
+        QuadButton = new Button("Quad");
+        QuadButton.addEventFilter(ActionEvent.ACTION, new BindButtonHandler(quad ,drawingPane));
 
 
-        getChildren().addAll(clearButton, rectangleButton, circleButton, triangleButton, removeButton, groupButton, degroupButton, undoButton, cloneButton, TextButton, bindButton);
+        getChildren().addAll(clearButton, rectangleButton, circleButton, triangleButton, removeButton, groupButton, degroupButton, undoButton, cloneButton, TextButton, bindButton, ArcButton, QuadButton);
         setPadding(new Insets(5));
         setSpacing(5.0);
         getStyleClass().add("toolbar");
