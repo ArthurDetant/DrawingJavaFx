@@ -1,25 +1,27 @@
 package drawing.shapes;
 
+import drawing.IEdgeStrategy;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 
 public class Edge implements IShape  {
 
     private IShape from;
     private IShape to;
-    private Line shape;
+    private Path shape;
     private boolean isSelected;
+    private IEdgeStrategy iEdgeStrategy;
 
-    public Edge(IShape f, IShape t) {
+    public Edge(IShape f, IShape t, IEdgeStrategy ies) {
+
+       shape = new Path();
        from=f;
        to = t;
-       shape = new Line();
-       shape.startXProperty().bind(from.translateXPorperty());
-       shape.startYProperty().bind(from.translateYPorperty());
-       shape.endXProperty().bind(to.translateXPorperty());
-       shape.endYProperty().bind(to.translateYPorperty());
+       iEdgeStrategy =ies;
+       ies.buildPath(f,t,shape);
+
     }
 
     @Override
@@ -70,12 +72,12 @@ public class Edge implements IShape  {
 
     @Override
     public ObservableValue translateXPorperty() {
-        return shape.startXProperty().add(shape.endXProperty()).divide(2);
+        return shape.translateXProperty();
 
     }
 
     @Override
     public ObservableValue translateYPorperty() {
-        return shape.startYProperty().add(shape.endYProperty()).divide(2);
+        return shape.translateYProperty();
     }
 }
